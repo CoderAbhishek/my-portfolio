@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects — Abhishek Vinod</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0f;
+      --bg2:       #111118;
+      --bg3:       #16161f;
+      --border:    rgba(255,255,255,0.07);
+      --text:      #e8e8f0;
+      --muted:     #8888a0;
+      --accent:    #6c63ff;
+      --accent2:   #a78bfa;
+      --green:     #34d399;
+      --amber:     #fbbf24;
+      --card-hover: rgba(108,99,255,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem; font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a.active { color: var(--accent2); }
+
+    /* ── HERO ── */
+    .page-hero {
+      padding: 140px 5% 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .page-hero .tag {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      background: rgba(108,99,255,0.12);
+      border: 1px solid rgba(108,99,255,0.25);
+      padding: 5px 14px; border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .page-hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .page-hero h1 span { color: var(--accent2); }
+    .page-hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+      line-height: 1.75;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      padding: 0 5% 100px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.7rem; font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 48px;
+      max-width: 560px;
+    }
+
+    /* ── PROJECT CARDS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: border-color 0.25s, background 0.25s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--card-hover);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .project-card:hover {
+      border-color: rgba(108,99,255,0.3);
+      background: var(--bg3);
+      transform: translateY(-3px);
+    }
+    .project-card:hover::before { opacity: 1; }
+
+    .card-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 12px;
+    }
+    .card-icon {
+      width: 48px; height: 48px;
+      background: rgba(108,99,255,0.12);
+      border: 1px solid rgba(108,99,255,0.2);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .status-badge {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 11px;
+      border-radius: 100px;
+      flex-shrink: 0;
+    }
+    .status-live {
+      background: rgba(52,211,153,0.12);
+      border: 1px solid rgba(52,211,153,0.3);
+      color: var(--green);
+    }
+    .status-wip {
+      background: rgba(251,191,36,0.1);
+      border: 1px solid rgba(251,191,36,0.25);
+      color: var(--amber);
+    }
+
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+    .card-desc {
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+    .card-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: auto;
+    }
+    .tag-pill {
+      font-size: 0.72rem; font-weight: 500;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 3px 11px;
+      border-radius: 100px;
+    }
+    .card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--accent2);
+      text-decoration: none;
+      margin-top: 4px;
+      transition: gap 0.2s;
+    }
+    .card-link:hover { gap: 10px; }
+
+    /* ── COMING SOON GRID ── */
+    .wip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .wip-card {
+      background: var(--bg2);
+      border: 1px dashed rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex; flex-direction: column; gap: 12px;
+      transition: border-color 0.25s;
+    }
+    .wip-card:hover { border-color: rgba(251,191,36,0.3); }
+    .wip-icon {
+      font-size: 1.5rem;
+    }
+    .wip-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: #fff;
+    }
+    .wip-desc {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.65;
+    }
+    .wip-progress {
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 4px;
+    }
+    .progress-bar {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--amber), #f59e0b);
+      border-radius: 100px;
+    }
+    .progress-label {
+      font-size: 0.72rem; font-weight: 600;
+      color: var(--amber);
+      white-space: nowrap;
+    }
+
+    /* ── GITHUB CTA ── */
+    .github-cta {
+      margin: 0 5% 80px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(135deg, rgba(108,99,255,0.1), rgba(167,139,250,0.05));
+      border: 1px solid rgba(108,99,255,0.2);
+      border-radius: 20px;
+      padding: 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 32px;
+    }
+    .github-cta h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: #fff; margin-bottom: 8px;
+    }
+    .github-cta p {
+      color: var(--muted);
+      font-size: 0.9rem; max-width: 420px;
+    }
+    .btn-github {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.875rem; font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 10px;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-github:hover {
+      background: #5a52e0;
+      transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 5%;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* ── FADE IN ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.35s; }
+    .delay-4 { animation-delay: 0.5s; }
+
+    @media (max-width: 700px) {
+      .nav-links { gap: 1.2rem; }
+      .nav-links li:nth-child(n+4) { display: none; }
+      .github-cta { flex-direction: column; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">AV.</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="story.html">My Story</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="tag fade-up">Build Log</div>
+    <h1 class="fade-up delay-1">Things I've <span>Built</span><br/>& Am Building.</h1>
+    <p class="fade-up delay-2">
+      Real projects — documented, shipped, and in progress. Strategy consulting taught me to think clearly. AI tools let me build fast. Here's the output.
+    </p>
+  </div>
+
+  <!-- LIVE PROJECTS -->
+  <div class="section">
+    <div class="section-label fade-up">Shipped</div>
+    <div class="section-title fade-up delay-1">Live Projects</div>
+    <p class="section-sub fade-up delay-2">Built, documented, and deployed.</p>
+
+    <div class="projects-grid">
+
+      <!-- Card 1: Pre-Call Intel Briefing Tool -->
+      <div class="project-card fade-up delay-2">
+        <div class="card-top">
+          <div class="card-icon">🔍</div>
+          <span class="status-badge status-live">Live</span>
+        </div>
+        <div class="card-title">Pre-Call Intel Briefing Tool</div>
+        <div class="card-desc">
+          An AI-powered research assistant that generates structured briefing documents before interviews or client calls. Built on Claude's API with tool use — automatically surfaces company background, recent news, key stakeholders, and role-specific talking points in seconds.
+        </div>
+        <div class="card-tags">
+          <span class="tag-pill">Claude API</span>
+          <span class="tag-pill">Python</span>
+          <span class="tag-pill">Tool Use</span>
+          <span class="tag-pill">Web Research</span>
+        </div>
+        <a href="https://github.com/coderabhishek" target="_blank" class="card-link">View on GitHub →</a>
+      </div>
+
+      <!-- Card 2: Daily Intelligence Digest -->
+      <div class="project-card fade-up delay-3">
+        <div class="card-top">
+          <div class="card-icon">📰</div>
+          <span class="status-badge status-live">Live</span>
+        </div>
+        <div class="card-title">Daily Intelligence Digest</div>
+        <div class="card-desc">
+          A personalised morning briefing delivered to email at 6:00 AM every day. Python automation pulls live signals across AI/ML, tech, job market, sports, fitness, and global news — then synthesises them into a readable digest. Zero manual effort after setup.
+        </div>
+        <div class="card-tags">
+          <span class="tag-pill">Python</span>
+          <span class="tag-pill">Automation</span>
+          <span class="tag-pill">APIs</span>
+          <span class="tag-pill">Scheduling</span>
+          <span class="tag-pill">Gmail</span>
+        </div>
+        <a href="https://github.com/coderabhishek" target="_blank" class="card-link">View on GitHub →</a>
+      </div>
+
+      <!-- Card 3: This Portfolio -->
+      <div class="project-card fade-up delay-4">
+        <div class="card-top">
+          <div class="card-icon">🌐</div>
+          <span class="status-badge status-live">Live</span>
+        </div>
+        <div class="card-title">Portfolio Website</div>
+        <div class="card-desc">
+          This site. Built from scratch with HTML and CSS — no frameworks, no templates. Designed with a mobile-first approach, custom dark theme, and smooth scroll navigation. Deployed via GitHub Pages. Every pixel was deliberate.
+        </div>
+        <div class="card-tags">
+          <span class="tag-pill">HTML</span>
+          <span class="tag-pill">CSS</span>
+          <span class="tag-pill">GitHub Pages</span>
+          <span class="tag-pill">Responsive</span>
+        </div>
+        <a href="https://github.com/coderabhishek/my-portfolio" target="_blank" class="card-link">View Source →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- IN PROGRESS -->
+  <div class="section">
+    <div class="section-label fade-up">In the Lab</div>
+    <div class="section-title fade-up delay-1">Work in Progress</div>
+    <p class="section-sub fade-up delay-2">Active builds — being designed, developed, and documented in real time.</p>
+
+    <div class="wip-grid">
+
+      <div class="wip-card fade-up delay-2">
+        <div class="wip-icon">💪</div>
+        <div class="wip-title">AI Gym Tracker</div>
+        <div class="wip-desc">
+          A smart fitness tracker that logs workouts, tracks progressive overload, and surfaces AI-generated insights on recovery and performance trends. Tailored to real training patterns, not generic plans.
+        </div>
+        <div class="wip-progress">
+          <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
+          <span class="progress-label">~40%</span>
+        </div>
+        <div class="card-tags">
+          <span class="tag-pill">AI Integration</span>
+          <span class="tag-pill">Data Tracking</span>
+          <span class="tag-pill">UX Design</span>
+        </div>
+      </div>
+
+      <div class="wip-card fade-up delay-3">
+        <div class="wip-icon">📊</div>
+        <div class="wip-title">AI Market Research Tool</div>
+        <div class="wip-desc">
+          An agentic pipeline that automates market sizing, competitor mapping, and TAM/SAM/SOM analysis — the kind of work that took days in consulting, compressed into a structured AI workflow.
+        </div>
+        <div class="wip-progress">
+          <div class="progress-bar"><div class="progress-fill" style="width:25%"></div></div>
+          <span class="progress-label">~25%</span>
+        </div>
+        <div class="card-tags">
+          <span class="tag-pill">Agentic AI</span>
+          <span class="tag-pill">Research Automation</span>
+          <span class="tag-pill">Consulting Use Case</span>
+        </div>
+      </div>
+
+      <div class="wip-card fade-up delay-4">
+        <div class="wip-icon">📈</div>
+        <div class="wip-title">Analytics Dashboard Template</div>
+        <div class="wip-desc">
+          A reusable analytics dashboard built for quick deployment across business use cases — KPI tracking, cohort analysis, and executive-ready visualisations. Designed to replace hours of BI setup.
+        </div>
+        <div class="wip-progress">
+          <div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div>
+          <span class="progress-label">~20%</span>
+        </div>
+        <div class="card-tags">
+          <span class="tag-pill">Power BI / Python</span>
+          <span class="tag-pill">Data Viz</span>
+          <span class="tag-pill">Business Analytics</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GITHUB CTA -->
+  <div class="github-cta fade-up">
+    <div>
+      <h3>All work is documented on GitHub.</h3>
+      <p>Code, architecture notes, and project READMEs — everything is version-controlled and public. See the full build history.</p>
+    </div>
+    <a href="https://github.com/coderabhishek" target="_blank" class="btn-github">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      github.com/coderabhishek
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Abhishek Vinod &nbsp;·&nbsp; Strategy · Analytics · AI &nbsp;·&nbsp; Hyderabad, India &nbsp;·&nbsp; © 2026</p>
+    <p style="margin-top:8px"><a href="index.html">Back to Portfolio</a> &nbsp;·&nbsp; <a href="story.html">My Story</a></p>
+  </footer>
+
+</body>
+</html>

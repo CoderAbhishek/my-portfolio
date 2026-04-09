@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Story — Abhishek Vinod</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0f;
+      --bg2:       #111118;
+      --bg3:       #16161f;
+      --border:    rgba(255,255,255,0.07);
+      --text:      #e8e8f0;
+      --muted:     #8888a0;
+      --accent:    #6c63ff;
+      --accent2:   #a78bfa;
+      --green:     #34d399;
+      --amber:     #fbbf24;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem; font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--accent2); }
+
+    /* ── HERO ── */
+    .page-hero {
+      padding: 140px 5% 80px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .page-hero .tag {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      background: rgba(108,99,255,0.12);
+      border: 1px solid rgba(108,99,255,0.25);
+      padding: 5px 14px; border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .page-hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .page-hero h1 span { color: var(--accent2); }
+    .page-hero .hero-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      max-width: 580px;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content-wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 5% 100px;
+    }
+
+    /* ── FAQ HOOK CARD ── */
+    .hook-card {
+      background: linear-gradient(135deg, rgba(108,99,255,0.1), rgba(167,139,250,0.04));
+      border: 1px solid rgba(108,99,255,0.25);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 60px;
+    }
+    .hook-card .question {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 12px;
+    }
+    .hook-card h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .hook-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.75;
+    }
+
+    /* ── STORY SECTIONS ── */
+    .story-section {
+      margin-bottom: 64px;
+    }
+    .story-section .section-num {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 12px;
+    }
+    .story-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .story-section p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .story-section p:last-child { margin-bottom: 0; }
+    .story-section strong { color: var(--text); font-weight: 600; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 56px 0;
+    }
+
+    /* ── ACTIVITY CARDS ── */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .activity-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      display: flex; gap: 14px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .activity-item:hover { border-color: rgba(108,99,255,0.25); }
+    .activity-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .activity-text .a-title {
+      font-size: 0.88rem; font-weight: 600;
+      color: #fff; margin-bottom: 4px;
+    }
+    .activity-text .a-desc {
+      font-size: 0.8rem; color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── WHAT I'M TARGETING ── */
+    .target-list {
+      margin-top: 24px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .target-item {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: 0.9rem; color: var(--text);
+    }
+    .target-item .dot {
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── CLOSING CTA ── */
+    .closing-cta {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px;
+      text-align: center;
+      margin-top: 72px;
+    }
+    .closing-cta h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: #fff; margin-bottom: 12px;
+    }
+    .closing-cta p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      max-width: 440px;
+      margin: 0 auto 28px;
+      line-height: 1.75;
+    }
+    .cta-buttons {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.875rem; font-weight: 600;
+      padding: 13px 26px;
+      border-radius: 10px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #5a52e0; transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.875rem; font-weight: 600;
+      padding: 13px 26px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 5%;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.35s; }
+
+    @media (max-width: 700px) {
+      .nav-links { gap: 1.2rem; }
+      .nav-links li:nth-child(n+4) { display: none; }
+      .activity-grid { grid-template-columns: 1fr; }
+      .closing-cta { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">AV.</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="story.html" class="active">My Story</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="tag fade-up">Context</div>
+    <h1 class="fade-up delay-1">The <span>Questions</span><br/>Worth Asking.</h1>
+    <p class="hero-sub fade-up delay-2">
+      Every profile raises questions. This page answers the ones a recruiter will have but won't ask — directly, and on my terms.
+    </p>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content-wrapper">
+
+    <!-- Hook Card -->
+    <div class="hook-card fade-up">
+      <div class="question">The obvious question</div>
+      <h2>You left 1Lattice in December 2025. What happened?</h2>
+      <p>
+        The project pipeline was thinning. Rather than wait for the next assignment in a holding pattern, I made a deliberate decision to step back, recalibrate, and invest the time in something I knew would compound — a focused upskilling period in AI, at a moment when the field is moving faster than most organisations can keep up with.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Section 1: The Decision -->
+    <div class="story-section fade-up">
+      <div class="section-num">01 — The Decision</div>
+      <h2>Why leave instead of waiting it out?</h2>
+      <p>
+        In consulting, there are moments between engagements where you can either coast or build. When the pipeline at 1Lattice thinned out, I assessed the situation clearly: the next assignment was uncertain in timing, and the opportunity cost of waiting was real.
+      </p>
+      <p>
+        AI capability is compounding every few months. The gap between professionals who are building with these tools and those who are merely aware of them is already significant — and widening. I chose to be on the right side of that gap, deliberately, with time and structure behind it.
+      </p>
+      <p>
+        That decision was <strong>active, not reactive</strong>. It was made with a plan, not out of frustration.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Section 2: What I've Done -->
+    <div class="story-section fade-up">
+      <div class="section-num">02 — The Work Since</div>
+      <h2>What have the last few months actually looked like?</h2>
+      <p>
+        Structured, intensive, and documented. This wasn't a break — it was a build period. Here's what it has included:
+      </p>
+
+      <div class="activity-grid">
+        <div class="activity-item">
+          <div class="activity-icon">🎓</div>
+          <div class="activity-text">
+            <div class="a-title">IIT Roorkee Certification</div>
+            <div class="a-desc">AI Agents & Applied Data Analytics — a structured programme from one of India's premier technical institutions.</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon">⚡</div>
+          <div class="activity-text">
+            <div class="a-title">AI Mastermind Programme</div>
+            <div class="a-desc">30+ AI tools across GenAI, automation, and no-code — including intensive 10-hour weekend training sessions.</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon">🤖</div>
+          <div class="activity-text">
+            <div class="a-title">Anthropic AI Fundamentals</div>
+            <div class="a-desc">Certified in Claude API usage, prompt engineering, agentic workflows, and enterprise AI deployment patterns.</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon">🛠️</div>
+          <div class="activity-text">
+            <div class="a-title">Hands-On Project Work</div>
+            <div class="a-desc">Built and documented real AI tools on GitHub — not theoretical exercises. Production-oriented, problem-first builds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Section 3: What I'm Looking For -->
+    <div class="story-section fade-up">
+      <div class="section-num">03 — The Search</div>
+      <h2>What kind of role am I targeting — and why haven't I "just taken something"?</h2>
+      <p>
+        I am <strong>actively in the market</strong> and open to the right conversation. I am not in a position where I need to accept the first available offer — which means the role I join will be a considered fit, not a default choice.
+      </p>
+      <p>
+        The combination I bring — strategy consulting experience, full-stack BFSI engineering background, and hands-on AI capability — is uncommon. I'm targeting organisations where that combination is genuinely valued, not just listed as a bonus.
+      </p>
+
+      <div class="target-list">
+        <div class="target-item">
+          <div class="dot"></div>
+          Business Analyst / Analytics roles at tech-forward or growth-stage companies
+        </div>
+        <div class="target-item">
+          <div class="dot"></div>
+          Consulting Analyst positions where AI fluency is a differentiator, not an afterthought
+        </div>
+        <div class="target-item">
+          <div class="dot"></div>
+          Technology delivery roles where strategy and engineering intersect
+        </div>
+        <div class="target-item">
+          <div class="dot"></div>
+          AI product or strategy roles at companies building in the space
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Closing CTA -->
+    <div class="closing-cta fade-up">
+      <h3>If you've read this far, let's talk.</h3>
+      <p>
+        This page exists because I believe the best professional relationships start with clarity. If what you've read aligns with what you're looking for — I'm easy to reach.
+      </p>
+      <div class="cta-buttons">
+        <a href="mailto:abhishekvinod48@gmail.com" class="btn-primary">✉️ &nbsp;Send an Email</a>
+        <a href="https://linkedin.com/in/abhishekvinod-mba" target="_blank" class="btn-secondary">💼 &nbsp;Connect on LinkedIn</a>
+        <a href="projects.html" class="btn-secondary">🛠️ &nbsp;View My Projects</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Abhishek Vinod &nbsp;·&nbsp; Strategy · Analytics · AI &nbsp;·&nbsp; Hyderabad, India &nbsp;·&nbsp; © 2026</p>
+    <p style="margin-top:8px"><a href="index.html">Back to Portfolio</a> &nbsp;·&nbsp; <a href="projects.html">Projects</a></p>
+  </footer>
+
+</body>
+</html>
