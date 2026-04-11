@@ -317,6 +317,9 @@ section { position: relative; z-index: 10; }
 .ip { background: rgba(167,139,250,0.12); }
 .ig { background: rgba(52,211,153,0.12); }
 .io { background: rgba(251,146,60,0.12); }
+.ir { background: rgba(244,114,182,0.12); }
+.ic { background: rgba(56,189,248,0.12); }
+.iy { background: rgba(250,204,21,0.12); }
 .skill-cat-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; color: var(--text); }
 .skill-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
 .tag {
