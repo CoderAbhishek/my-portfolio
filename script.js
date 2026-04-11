@@ -11,42 +11,44 @@ document.addEventListener('DOMContentLoaded', () => {
      To change the phrases shown in the hero,
      just edit the array below.
   ──────────────────────────────────────────── */
-  const phrases = [
-    'Strategy Consultant',
-    'MBA Analytics',
-    'AI Tools Builder',
-    'Full-Stack Engineer',
-    'BI & Data Analyst',
-  ];
-
-  let phraseIndex = 0;
-  let charIndex   = 0;
-  let isDeleting  = false;
-
   const typedEl = document.getElementById('typed-text');
 
-  function type() {
-    const currentPhrase = phrases[phraseIndex];
-    typedEl.textContent = isDeleting
-      ? currentPhrase.slice(0, --charIndex)
-      : currentPhrase.slice(0, ++charIndex);
+  if (typedEl) {
+    const phrases = [
+      'Strategy Consultant',
+      'MBA Analytics',
+      'AI Tools Builder',
+      'Full-Stack Engineer',
+      'BI & Data Analyst',
+    ];
 
-    // Finished typing — pause, then start deleting
-    if (!isDeleting && charIndex === currentPhrase.length) {
-      isDeleting = true;
-      return setTimeout(type, 1900);
+    let phraseIndex = 0;
+    let charIndex   = 0;
+    let isDeleting  = false;
+
+    function type() {
+      const currentPhrase = phrases[phraseIndex];
+      typedEl.textContent = isDeleting
+        ? currentPhrase.slice(0, --charIndex)
+        : currentPhrase.slice(0, ++charIndex);
+
+      // Finished typing — pause, then start deleting
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        isDeleting = true;
+        return setTimeout(type, 1900);
+      }
+
+      // Finished deleting — move to next phrase
+      if (isDeleting && charIndex === 0) {
+        isDeleting   = false;
+        phraseIndex  = (phraseIndex + 1) % phrases.length;
+      }
+
+      setTimeout(type, isDeleting ? 44 : 82);
     }
 
-    // Finished deleting — move to next phrase
-    if (isDeleting && charIndex === 0) {
-      isDeleting   = false;
-      phraseIndex  = (phraseIndex + 1) % phrases.length;
-    }
-
-    setTimeout(type, isDeleting ? 44 : 82);
+    setTimeout(type, 700); // initial delay before typing starts
   }
-
-  setTimeout(type, 700); // initial delay before typing starts
 
 
   /* ────────────────────────────────────────────
@@ -90,12 +92,37 @@ document.addEventListener('DOMContentLoaded', () => {
      Adds a drop-shadow to the sticky nav once
      the user scrolls past the top.
   ──────────────────────────────────────────── */
-  const nav = document.getElementById('nav');
+  const nav = document.getElementById('nav') || document.querySelector('nav');
 
-  window.addEventListener('scroll', () => {
-    nav.style.boxShadow = window.scrollY > 20
-      ? '0 2px 30px rgba(0, 0, 0, 0.45)'
-      : 'none';
-  }, { passive: true });
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 20
+        ? '0 2px 30px rgba(0, 0, 0, 0.45)'
+        : 'none';
+    }, { passive: true });
+  }
+
+
+  /* ────────────────────────────────────────────
+     5. MOBILE HAMBURGER MENU
+     Toggle nav links on small screens.
+  ──────────────────────────────────────────── */
+  const hamburger = document.getElementById('nav-hamburger');
+  const navLinks  = document.querySelector('.nav-links');
+
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    // Close menu when a nav link is clicked
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+  }
 
 });
