@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (typedEl) {
     const phrases = [
+      'AI Engineer',
+      'AI Tools Builder',
+      'Full-Stack Developer',
       'Strategy Consultant',
       'MBA Analytics',
-      'AI Tools Builder',
-      'Full-Stack Engineer',
-      'BI & Data Analyst',
     ];
 
     let phraseIndex = 0;
