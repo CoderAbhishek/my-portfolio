@@ -38,9 +38,9 @@
     <div class="tools-header">
       <div>
         <div class="section-label reveal">AI Stack</div>
-        <h2 class="section-heading reveal rd1">30+ AI Tools,<br>In Production</h2>
+        <h2 class="section-heading reveal rd1">AI Engineering Stack</h2>
         <p class="section-sub reveal rd2" style="margin-bottom:0">
-          Hands-on across the full modern AI stack — frontier LLMs, no-code builders, and agentic workflows.
+          The tools, frameworks, and concepts I build with — not just use.
         </p>
       </div>
       <div class="reveal rd3">
@@ -56,66 +56,97 @@
       <div class="tool-card reveal">
         <div class="tool-card-top"><span class="tool-emoji">🧠</span><span class="tool-cat">Research LLM</span></div>
         <div class="tool-name">Claude (Anthropic)</div>
-        <div class="tool-desc">Advanced reasoning, long-context analysis, enterprise prompt engineering and agentic workflow design.</div>
+        <div class="tool-desc">Primary LLM for production builds. Used via the Claude API for the Pre-Call Intel Briefing Tool and the Daily Intelligence Digest, with hands-on experience in prompt grounding, structured JSON output, and cost-controlled demo deployments.</div>
         <span class="tool-hl">Certified ✓</span>
       </div>
 
       <div class="tool-card reveal rd1">
         <div class="tool-card-top"><span class="tool-emoji">💬</span><span class="tool-cat">LLM</span></div>
         <div class="tool-name">ChatGPT & Gemini</div>
-        <div class="tool-desc">Multi-model workflows for content generation, research synthesis, and business document drafting.</div>
+        <div class="tool-desc">Multi-model workflows for research synthesis, content generation, and cross-model comparison during development and testing.</div>
         <span class="tool-hl">Daily use</span>
       </div>
 
       <div class="tool-card reveal rd2">
         <div class="tool-card-top"><span class="tool-emoji">🔍</span><span class="tool-cat">AI Search</span></div>
         <div class="tool-name">Perplexity & NotebookLM</div>
-        <div class="tool-desc">Real-time research, source-grounded analysis, and deep document intelligence for consulting engagements.</div>
+        <div class="tool-desc">Real-time research and source-grounded analysis. Used for market intelligence gathering and deep document research during the 1Lattice consulting engagement.</div>
         <span class="tool-hl">Research stack</span>
       </div>
 
       <div class="tool-card reveal rd3">
-        <div class="tool-card-top"><span class="tool-emoji">⚡</span><span class="tool-cat">No-Code Builder</span></div>
-        <div class="tool-name">Bolt, Lovable & Replit</div>
-        <div class="tool-desc">Rapid prototyping and full-stack app deployment without traditional dev cycles — ship in hours, not weeks.</div>
-        <span class="tool-hl">App building</span>
+        <div class="tool-card-top"><span class="tool-emoji">🧬</span><span class="tool-cat">Frameworks</span></div>
+        <div class="tool-name">LangChain & LangGraph</div>
+        <div class="tool-desc">Core framework for building LLM applications and agentic pipelines. Used in the RAG PDF Chat app and the Resume vs JD Gap Analyser — implemented manual pipelines first, then rebuilt with LangChain to understand the abstraction layer.</div>
+        <span class="tool-hl">Building with</span>
       </div>
 
       <div class="tool-card reveal">
-        <div class="tool-card-top"><span class="tool-emoji">🎙️</span><span class="tool-cat">Meeting Intelligence</span></div>
-        <div class="tool-name">Fireflies, Whispr & Granola</div>
-        <div class="tool-desc">Automated meeting transcription, AI-generated summaries, and action follow-ups from client calls.</div>
-        <span class="tool-hl">Productivity</span>
+        <div class="tool-card-top"><span class="tool-emoji">🗄️</span><span class="tool-cat">Vector & Retrieval</span></div>
+        <div class="tool-name">ChromaDB & Pinecone</div>
+        <div class="tool-desc">Vector databases for embedding storage and semantic retrieval. Used ChromaDB locally in RAG pipelines with sentence-transformer embeddings, and exploring Pinecone for production-scale deployments.</div>
+        <span class="tool-hl">RAG stack</span>
       </div>
 
       <div class="tool-card reveal rd1">
-        <div class="tool-card-top"><span class="tool-emoji">🤖</span><span class="tool-cat">Automation</span></div>
-        <div class="tool-name">Numerous AI & Genspark</div>
-        <div class="tool-desc">Intelligent data enrichment, spreadsheet automation, and multi-agent research pipelines for client work.</div>
-        <span class="tool-hl">Workflow automation</span>
+        <div class="tool-card-top"><span class="tool-emoji">⚡</span><span class="tool-cat">LLM Inference</span></div>
+        <div class="tool-name">Groq</div>
+        <div class="tool-desc">Fast inference API for running Llama and Mistral models. Used in the RAG PDF Chat app for low-latency responses during development and testing.</div>
+        <span class="tool-hl">Fast inference</span>
       </div>
 
       <div class="tool-card reveal rd2">
-        <div class="tool-card-top"><span class="tool-emoji">🛠️</span><span class="tool-cat">Custom GPT</span></div>
-        <div class="tool-name">Custom GPT Development</div>
-        <div class="tool-desc">Designed and deployed custom AI assistants tailored for specific consulting and business analysis workflows.</div>
-        <span class="tool-hl">Built & deployed</span>
+        <div class="tool-card-top"><span class="tool-emoji">🚀</span><span class="tool-cat">Deployment</span></div>
+        <div class="tool-name">Streamlit & Gradio</div>
+        <div class="tool-desc">Rapid UI and deployment layer for Python-based AI apps. Deployed the RAG PDF Chat on Streamlit Community Cloud and the JD Gap Analyser on Hugging Face Spaces via Gradio.</div>
+        <span class="tool-hl">Shipped and live</span>
       </div>
 
       <div class="tool-card reveal rd3">
-        <div class="tool-card-top"><span class="tool-emoji">🧬</span><span class="tool-cat">Emerging</span></div>
-        <div class="tool-name">Agentic Workflows</div>
-        <div class="tool-desc">Designing multi-step agentic chains that automate complex research, analysis, and delivery tasks end-to-end.</div>
-        <span class="tool-hl">Advanced</span>
+        <div class="tool-card-top"><span class="tool-emoji">⚙️</span><span class="tool-cat">Automation</span></div>
+        <div class="tool-name">n8n</div>
+        <div class="tool-desc">Workflow automation tool used to build the Daily Intelligence Digest: RSS aggregation, Claude Haiku summarisation, and scheduled Gmail delivery across 50+ sources daily.</div>
+        <span class="tool-hl">In production</span>
       </div>
 
+      <div class="tool-card reveal">
+        <div class="tool-card-top"><span class="tool-emoji">🤝</span><span class="tool-cat">Agent Architecture</span></div>
+        <div class="tool-name">MCP (Model Context Protocol)</div>
+        <div class="tool-desc">Hands-on with Model Context Protocol for building tool-augmented agent architectures. Practical exposure to connecting LLMs with external tools and structured data sources.</div>
+        <span class="tool-hl">Hands-on</span>
+      </div>
+
+      <div class="tool-card reveal rd1">
+        <div class="tool-card-top"><span class="tool-emoji">🧲</span><span class="tool-cat">Embeddings</span></div>
+        <div class="tool-name">Sentence Transformers & Hugging Face</div>
+        <div class="tool-desc">Used sentence-transformer models for generating embeddings in RAG pipelines. Deployed the JD Gap Analyser on Hugging Face Spaces with a cost-controlled demo mode.</div>
+        <span class="tool-hl">In pipeline</span>
+      </div>
+
+    </div>
+
+    <div class="reveal rd2" style="margin-top:3rem">
+      <div class="section-label" style="margin-bottom:1.25rem">Conceptual Foundations</div>
+      <div class="skill-tags">
+        <span class="tag">Transformer Architecture</span>
+        <span class="tag">Fine-tuning</span>
+        <span class="tag">Embeddings and Tokenization</span>
+        <span class="tag">RAG (Retrieval-Augmented Generation)</span>
+        <span class="tag">LLM Evaluation and Guardrails</span>
+        <span class="tag">Prompt Engineering</span>
+        <span class="tag">Deep Learning Fundamentals</span>
+        <span class="tag">Bias-Variance Tradeoff</span>
+        <span class="tag">Supervised and Unsupervised Learning</span>
+        <span class="tag">Vector Databases</span>
+        <span class="tag">Agent Architectures</span>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="footer-brand">Abhishek Vinod<span>.</span></div>
-  <div class="footer-copy">Strategy · Analytics · AI · Hyderabad, India</div>
+  <div class="footer-copy">AI Engineer · Full-Stack Developer · Hyderabad, India</div>
   <div class="footer-copy">© 2026</div>
 </footer>
 

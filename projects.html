@@ -443,7 +443,7 @@
     <div class="tag fade-up">Build Log</div>
     <h1 class="fade-up delay-1">Things I've <span>Built</span><br/>& Am Building.</h1>
     <p class="fade-up delay-2">
-      Real projects — documented, shipped, and in progress. Strategy consulting taught me to think clearly. AI tools let me build fast. Here's the output.
+      Real projects — documented, shipped, and in progress. Software development taught me to ship. Strategy consulting taught me to think at the business level. AI lets me do both — faster. Here's the output.
     </p>
   </div>
 
@@ -528,7 +528,7 @@
         </div>
         <div class="card-title">PDF Chat App</div>
         <div class="card-desc">
-          A RAG-based conversational app — upload any PDF and ask questions in plain English. Built from scratch with LangChain, ChromaDB, and local embeddings; answers are generated via Groq's LLaMA 3.3 70B and grounded strictly in the source document, with no hallucination. Tested on a 139-page financial report.
+          A RAG-based conversational app built in two stages. First, implemented the full retrieval pipeline manually: PDF extraction, chunking, sentence-transformer embeddings, ChromaDB vector storage, and grounded prompt construction. Then rebuilt the same pipeline using LangChain's RetrievalQA chain to directly compare manual wiring against framework abstraction and understand what the framework is actually doing under the hood. Answers are generated via Groq's LLaMA 3.3 70B and grounded strictly in the source document. Tested on a 139-page financial report with zero hallucination.
         </div>
         <div class="card-tags">
           <span class="tag-pill">Python</span>
@@ -552,7 +552,7 @@
         </div>
         <div class="card-title">Resume vs JD Gap Analyzer</div>
         <div class="card-desc">
-          An AI-powered resume screening tool — upload a resume and a job description and get an instant match score out of 100, see exactly which skills already match and which are missing, and receive AI-generated recommendations to close the gap. Built with LangChain and Groq's LLaMA models for analysis, with pdfplumber and python-docx handling PDF, Word, and plain-text inputs. Deployed as an interactive Gradio app.
+          An AI-powered resume screening tool built with a deliberate architectural decision at its core. Evaluated a RAG/LangChain pipeline first, then chose direct context injection after confirming both documents fit comfortably within the LLM's context window, avoiding unnecessary complexity. Upload a resume and a job description and get an instant match score out of 100, a breakdown of matching and missing skills, and AI-generated recommendations to close the gap. Structured prompt engineering returns consistent JSON output every time. Supports PDF, Word, and plain-text inputs via pdfplumber and python-docx. Deployed as an interactive Gradio app on Hugging Face Spaces with a cost-controlled demo mode.
         </div>
         <div class="card-tags">
           <span class="tag-pill">Python</span>
@@ -665,7 +665,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>Abhishek Vinod &nbsp;·&nbsp; Strategy · Analytics · AI &nbsp;·&nbsp; Hyderabad, India &nbsp;·&nbsp; © 2026</p>
+    <p>Abhishek Vinod &nbsp;·&nbsp; AI Engineer · Full-Stack Developer &nbsp;·&nbsp; Hyderabad, India &nbsp;·&nbsp; © 2026</p>
     <p style="margin-top:8px"><a href="index.html">Back to Portfolio</a> &nbsp;·&nbsp; <a href="story.html">My Story</a></p>
   </footer>
 

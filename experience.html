@@ -47,15 +47,14 @@
         <div class="exp-header">
           <span class="exp-company">BuildWithAV — AI Automation Practice</span>
           <span class="exp-role">Founder — Independent AI Development</span>
-          <span class="exp-period">Jul 2025 – Present</span>
+          <span class="exp-period">Jan 2026 – Present</span>
         </div>
         <div class="exp-location">📍 Hyderabad, Telangana (Remote)</div>
         <ul class="exp-bullets">
-          <li>Built and deployed a <strong>RAG-based PDF Chat application</strong> using LangChain, ChromaDB (vector store), and Llama 3 via Groq API; served via Streamlit, enabling semantic document Q&A grounded in source retrieval with <strong>zero hallucination</strong>.</li>
-          <li>Engineering a <strong>JD-versus-Resume Gap Analyser</strong> built on a RAG pipeline — ingests JD and CV as vector embeddings and returns structured gap analysis and rewrite suggestions, deployed on Hugging Face Spaces via Gradio.</li>
+          <li>Built a <strong>RAG-based PDF Chat application</strong> from scratch: implemented the full retrieval pipeline manually first, covering PDF extraction, chunking, sentence-transformer embeddings, ChromaDB vector storage, and grounded prompt construction. Then rebuilt the same pipeline using LangChain's RetrievalQA chain to compare manual wiring against framework abstraction. Served via Streamlit and deployed on Streamlit Community Cloud.</li>
+          <li>Built a <strong>Resume versus JD Gap Analyser</strong> supporting PDF, DOCX, and TXT input: evaluated a RAG/LangChain architecture first, then chose direct context injection after confirming both documents fit comfortably within the LLM's context window, avoiding unnecessary complexity. Used structured prompt engineering to return consistent JSON output covering match score, matching skills, missing skills, and recommendations. Deployed on Hugging Face Spaces with a cost-controlled demo mode.</li>
           <li>Built an <strong>n8n-based Daily Intelligence Digest</strong>: RSS aggregation → Claude Haiku summarisation → scheduled Gmail delivery; processes 50+ sources daily, <strong>replacing 30+ minutes of manual morning research</strong>, demoed on Loom and embedded on buildwithav.com.</li>
           <li>Shipped a <strong>Claude API-powered Pre-Call Intel Briefing Tool</strong> on GitHub Pages (via a Cloudflare Worker proxy); generates structured company and role intelligence in under 60 seconds, listed on Gumroad at $9.</li>
-          <li>Completing the <strong>IIT Roorkee Applied Data Analytics & GenAI programme</strong> (7-month, ongoing) and a fully practical Agentic AI build-and-deploy course covering LangChain, LangGraph, and agent frameworks — zero theory, fully build-and-deploy.</li>
           <li>Working with <strong>MCP (Model Context Protocol)</strong> for tool-augmented agent architectures, with practical exposure to vector databases (ChromaDB, Pinecone), API orchestration, and production prompt engineering.</li>
         </ul>
       </div>
@@ -70,9 +69,9 @@
         </div>
         <div class="exp-location">📍 Bengaluru, Karnataka</div>
         <ul class="exp-bullets">
+          <li>Engineered <strong>AI-driven research workflows</strong> leveraging Claude, ChatGPT, and Perplexity to extract market sizing and KPI data from annual reports, embedding source-verified figures into Excel and <strong>reducing document processing time by 50%</strong>.</li>
           <li>Spearheaded a <strong>Vendor Due Diligence engagement</strong> in natural animal healthcare by defining project scope, conducting requirements analysis, benchmarking five competitors through expert calls, and delivering scenario-based market insights to C-suite stakeholders.</li>
           <li>Streamlined financial benchmarking across six global competitors during an <strong>IPO readiness project</strong> by creating an automated Excel model that normalised currencies and fiscal-year differences, <strong>cutting review time by 80%</strong> and ensuring on-time delivery.</li>
-          <li>Engineered <strong>AI-driven research workflows</strong> leveraging Claude, ChatGPT, and Perplexity to extract market sizing and KPI data from annual reports, embedding source-verified figures into Excel and <strong>reducing document processing time by 50%</strong>.</li>
           <li><strong>Mentored and guided 1–2 analysts per project</strong> across multiple workstreams, providing structured training and checkpoint reviews that restored delivery quality without adding to personal execution load.</li>
           <li>Delivered end-to-end strategy and analytics solutions across financial services, technology, and healthcare, applying quantitative frameworks to support <strong>investment theses, opportunity sizing, and business case development</strong> for senior leadership.</li>
         </ul>
@@ -83,16 +82,16 @@
         <div class="exp-dot"></div>
         <div class="exp-header">
           <span class="exp-company">Tata Consultancy Services</span>
-          <span class="exp-role">Assistant System Engineer — Business and Systems Analysis, BFSI Domain</span>
+          <span class="exp-role">Assistant System Engineer — Full Stack Developer, BFSI Domain</span>
           <span class="exp-period">Nov 2020 – Jan 2023</span>
         </div>
         <div class="exp-location">📍 Hyderabad, Telangana</div>
         <ul class="exp-bullets">
-          <li>Collaborated with business analysts and product owners on <strong>BFSI client programmes</strong> to gather requirements, understand business needs, and contribute to the documentation of functional specifications and business rules across multiple project cycles.</li>
-          <li>Analysed systems and performance data for a banking portal project, <strong>identifying repeated database calls</strong> as the root cause of 3–4 second page load times, and presented documented findings and resolution recommendations to the project team.</li>
-          <li>Reviewed <strong>Business Requirements Documents</strong> to verify technical feasibility, clarity of articulation, and alignment to client business objectives before handover to the engineering team, reducing downstream rework.</li>
-          <li>Coordinated cross-functional <strong>Agile/Scrum teams</strong> spanning business analysts, developers, QA, and project managers — managing JIRA backlogs, tracking sprint milestones, and maintaining structured documentation in Confluence.</li>
-          <li>Supported <strong>UAT cycles</strong> by preparing test scenarios from business requirements, organising user testing sessions, logging and tracking defects, and confirming resolution of all issues before go-live sign-off.</li>
+          <li>Contributed to the end-to-end migration of a client banking portal from AngularJS to Angular 11, developing reusable UI components and a custom Angular widget across HTML5, CSS3, and JavaScript/TypeScript, with Git for version control and SQL/PostgreSQL for data validation, across 2+ years of front-end delivery in an enterprise BFSI environment.</li>
+          <li>Identified and resolved a performance issue on a banking portal: traced a 3 to 4 second page load delay to repeated database calls through root-cause analysis of system data, and presented documented findings and resolution recommendations to the project team.</li>
+          <li>Built and shipped features every sprint using JavaScript, TypeScript, HTML5, CSS3, and Angular on the frontend, with Java on the backend.</li>
+          <li>Handled regression testing and API testing with Postman as a standard part of the delivery cycle.</li>
+          <li>Coordinated cross-functional <strong>Agile/Scrum teams</strong> spanning developers, QA, and project managers, managing JIRA backlogs, tracking sprint milestones, and maintaining structured documentation in Confluence.</li>
         </ul>
       </div>
 
@@ -106,6 +105,7 @@
         </div>
         <div class="exp-location">📍 Hyderabad, Telangana</div>
         <ul class="exp-bullets">
+          <li>Built and evaluated linear and logistic regression models as part of the data science team workflow, applying core model evaluation techniques including Precision, Recall, F1, RMSE, and R-squared to assess performance.</li>
           <li>Gathered analytical requirements from the data science team, designed and built <strong>Power BI dashboards and Excel-based reports</strong> tracking key business KPIs, and prepared structured documentation for data processes and reporting outputs.</li>
           <li>Extracted, validated, and cleaned datasets using <strong>Python and SQL</strong>, ensuring delivery of accurate, analysis-ready data for business reporting and decision-making.</li>
         </ul>
@@ -131,7 +131,7 @@
 
 <footer>
   <div class="footer-brand">Abhishek Vinod<span>.</span></div>
-  <div class="footer-copy">Strategy · Analytics · AI · Hyderabad, India</div>
+  <div class="footer-copy">AI Engineer · Full-Stack Developer · Hyderabad, India</div>
   <div class="footer-copy">© 2026</div>
 </footer>
 
