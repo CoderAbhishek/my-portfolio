@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deep Research RAG — Case Study | Abhishek Vinod</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0a0a0f;
+      --bg2:     #111118;
+      --bg3:     #16161f;
+      --border:  rgba(255,255,255,0.07);
+      --text:    #e8e8f0;
+      --muted:   #8888a0;
+      --accent:  #6c63ff;
+      --accent2: #a78bfa;
+      --green:   #34d399;
+      --amber:   #fbbf24;
+      --red:     #f87171;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem; font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+
+    /* MAIN WRAPPER */
+    .page-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 100px 5% 80px;
+    }
+
+    /* HERO */
+    .hero {
+      padding-bottom: 64px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+    .hero-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(108,99,255,0.12);
+      border: 1px solid rgba(108,99,255,0.25);
+      display: inline-block;
+      padding: 5px 14px; border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .hero-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 640px;
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.875rem; font-weight: 600;
+      padding: 12px 22px;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #5a52e0; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.875rem; font-weight: 600;
+      padding: 12px 22px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-1px); }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .tag-pill {
+      font-size: 0.72rem; font-weight: 500;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 72px;
+    }
+    .section-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.7rem; font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .section p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .section p:last-child { margin-bottom: 0; }
+    .section strong { color: var(--text); font-weight: 600; }
+
+    /* PIPELINE */
+    .pipeline { display: flex; flex-direction: column; }
+    .pipeline-stage { display: flex; gap: 0; }
+    .pipeline-left {
+      display: flex; flex-direction: column; align-items: center;
+      width: 56px; flex-shrink: 0;
+    }
+    .stage-num {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(108,99,255,0.15);
+      border: 1.5px solid rgba(108,99,255,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .pipeline-line {
+      width: 2px;
+      flex: 1;
+      min-height: 20px;
+      background: rgba(108,99,255,0.18);
+    }
+    .pipeline-stage:last-child .pipeline-line { display: none; }
+    .pipeline-content {
+      flex: 1;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      margin-left: 14px;
+      transition: border-color 0.2s;
+    }
+    .pipeline-content:hover { border-color: rgba(108,99,255,0.3); }
+    .stage-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .stage-desc {
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.75;
+    }
+    .stage-desc code {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 0.8rem;
+      color: var(--accent2);
+      font-family: 'Courier New', monospace;
+    }
+
+    /* TECH TABLE */
+    .tech-table-wrap {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .tech-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .tech-table th {
+      text-align: left;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(108,99,255,0.04);
+    }
+    .tech-table td {
+      padding: 11px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--muted);
+      vertical-align: top;
+    }
+    .tech-table td:first-child {
+      color: var(--text);
+      font-weight: 500;
+      white-space: nowrap;
+      width: 38%;
+    }
+    .tech-table tr:last-child td { border-bottom: none; }
+    .tech-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* CHALLENGE CARDS */
+    .challenges { display: flex; flex-direction: column; gap: 20px; }
+    .challenge-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .challenge-card:hover { border-color: rgba(108,99,255,0.2); }
+    .challenge-header {
+      display: flex; align-items: center; gap: 18px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(108,99,255,0.04);
+    }
+    .challenge-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem; font-weight: 800;
+      color: rgba(108,99,255,0.35);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .challenge-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: #fff;
+      line-height: 1.35;
+    }
+    .challenge-block {
+      padding: 18px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .challenge-block:last-child { border-bottom: none; }
+    .challenge-block-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .label-wrong { color: var(--red); }
+    .label-fixed { color: var(--green); }
+    .challenge-block p {
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.8;
+    }
+    .challenge-block strong { color: var(--text); font-weight: 600; }
+
+    /* EVAL METRICS */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .metric-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .metric-score {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.4rem; font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .metric-name {
+      font-size: 0.88rem; font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .metric-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .eval-note {
+      background: rgba(251,191,36,0.06);
+      border: 1px solid rgba(251,191,36,0.18);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 16px;
+    }
+    .eval-note p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0;
+    }
+    .eval-note strong { color: var(--amber); font-weight: 600; }
+    .eval-context {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* CODE BLOCK */
+    .code-block {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: 'Courier New', 'Consolas', monospace;
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin: 0;
+      white-space: pre;
+    }
+    .d-comment { color: rgba(136,136,160,0.55); }
+
+    /* BACK SECTION */
+    .back-section {
+      text-align: center;
+      padding: 48px 0 16px;
+      border-top: 1px solid var(--border);
+      margin-top: 16px;
+    }
+    .back-section p {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 20px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 5%;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* HAMBURGER */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 101;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 700px) {
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(10,10,15,0.97);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 0.5rem 0; gap: 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { border-bottom: 1px solid var(--border); }
+      .nav-links li:last-child { border-bottom: none; }
+      .nav-links a { display: block; padding: 0.875rem 5%; font-size: 0.88rem; }
+      .metrics-grid { grid-template-columns: 1fr; }
+      .pipeline-left { width: 40px; }
+      .code-block { padding: 20px 18px; }
+      .tech-table td:first-child { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="nav-logo">AV<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../experience.html">Experience</a></li>
+      <li><a href="../skills.html">Skills</a></li>
+      <li><a href="../ai-stack.html">AI Stack</a></li>
+      <li><a href="../credentials.html">Credentials</a></li>
+      <li><a href="../projects.html" class="active">Projects</a></li>
+      <li><a href="../story.html">My Story</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- SECTION 1: HERO -->
+    <div class="hero">
+      <div class="hero-label">Case Study</div>
+      <h1>Deep Research RAG</h1>
+      <p class="hero-sub">A production-grade 7-stage retrieval-augmented generation system for research document intelligence</p>
+      <div class="hero-actions">
+        <a href="https://deep-research-rag-production.up.railway.app" target="_blank" rel="noopener" class="btn-primary">
+          ↗ Live Demo
+        </a>
+        <a href="https://github.com/CoderAbhishek/deep-research-rag" target="_blank" rel="noopener" class="btn-secondary">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+      <div class="hero-tags">
+        <span class="tag-pill">PyMuPDF</span>
+        <span class="tag-pill">LangChain</span>
+        <span class="tag-pill">ChromaDB</span>
+        <span class="tag-pill">BM25</span>
+        <span class="tag-pill">RRF</span>
+        <span class="tag-pill">HyDE</span>
+        <span class="tag-pill">Cross-Encoder Reranking</span>
+        <span class="tag-pill">Sentence Transformers</span>
+        <span class="tag-pill">Groq</span>
+        <span class="tag-pill">FastAPI</span>
+        <span class="tag-pill">Docker</span>
+        <span class="tag-pill">Railway</span>
+        <span class="tag-pill">RAGAS</span>
+        <span class="tag-pill">LangSmith</span>
+      </div>
+    </div>
+
+    <!-- SECTION 2: THE PROBLEM -->
+    <div class="section">
+      <div class="section-label">Background</div>
+      <h2>The Problem</h2>
+      <p>Research analysts and strategy consultants spend hours manually reading dense documents to locate specific data points, cross-reference claims across sources, and build evidence-grounded views. Keyword search is shallow. A basic LLM chatbot is unreliable: it hallucinates facts and cannot cite sources.</p>
+      <p>This project builds a system that solves both problems. Every answer is retrieved before it is generated, and every claim is cited to a specific source document and page number.</p>
+    </div>
+
+    <!-- SECTION 3: ARCHITECTURE -->
+    <div class="section">
+      <div class="section-label">Design</div>
+      <h2>7-Stage Pipeline Architecture</h2>
+      <div class="pipeline">
+
+        <div class="pipeline-stage">
+          <div class="pipeline-left">
+            <div class="stage-num">01</div>
+            <div class="pipeline-line"></div>
+          </div>
+          <div class="pipeline-content">
+            <div class="stage-name">HyDE (Hypothetical Document Embedding)</div>
+            <div class="stage-desc">The LLM generates a hypothetical answer passage to the query. That passage's embedding is used for dense retrieval instead of the raw question's embedding, because a passage written in document vocabulary retrieves far more relevant chunks than a short question.</div>
+          </div>
+        </div>
+
+        <div class="pipeline-stage">
+          <div class="pipeline-left">
+            <div class="stage-num">02</div>
+            <div class="pipeline-line"></div>
+          </div>
+          <div class="pipeline-content">
+            <div class="stage-name">Dense Retrieval</div>
+            <div class="stage-desc">ChromaDB vector store queried using the HyDE embedding. Model: <code>all-MiniLM-L6-v2</code> (384-dimensional bi-encoder). Top 20 candidates retrieved by cosine similarity.</div>
+          </div>
+        </div>
+
+        <div class="pipeline-stage">
+          <div class="pipeline-left">
+            <div class="stage-num">03</div>
+            <div class="pipeline-line"></div>
+          </div>
+          <div class="pipeline-content">
+            <div class="stage-name">BM25 Sparse Retrieval</div>
+            <div class="stage-desc"><code>rank-bm25</code> library with a custom regex tokenizer. Handles exact keyword matches that dense retrieval misses. Top 20 candidates retrieved independently from the dense results.</div>
+          </div>
+        </div>
+
+        <div class="pipeline-stage">
+          <div class="pipeline-left">
+            <div class="stage-num">04</div>
+            <div class="pipeline-line"></div>
+          </div>
+          <div class="pipeline-content">
+            <div class="stage-name">RRF Hybrid Fusion</div>
+            <div class="stage-desc">Reciprocal Rank Fusion merges the dense top-20 and BM25 top-20 into a single ranked list of 20 candidates. Custom implementation, not a library. Rewards chunks that rank well in both systems.</div>
+          </div>
+        </div>
+
+        <div class="pipeline-stage">
+          <div class="pipeline-left">
+            <div class="stage-num">05</div>
+            <div class="pipeline-line"></div>
+          </div>
+          <div class="pipeline-content">
+            <div class="stage-name">Cross-Encoder Reranking</div>
+            <div class="stage-desc"><code>cross-encoder/ms-marco-MiniLM-L-6-v2</code> rescores each (query, chunk) pair with full attention across both. More accurate than bi-encoder similarity but too slow to run on the full corpus, so it runs only on the 20 RRF candidates.</div>
+          </div>
+        </div>
+
+        <div class="pipeline-stage">
+          <div class="pipeline-left">
+            <div class="stage-num">06</div>
+            <div class="pipeline-line"></div>
+          </div>
+          <div class="pipeline-content">
+            <div class="stage-name">Page-Level Deduplication</div>
+            <div class="stage-desc">After reranking, only the highest-scoring chunk per unique source page is kept. Prevents the same page from appearing multiple times in the generation context and eliminates ranking dilution from duplicate chunks.</div>
+          </div>
+        </div>
+
+        <div class="pipeline-stage">
+          <div class="pipeline-left">
+            <div class="stage-num">07</div>
+            <div class="pipeline-line"></div>
+          </div>
+          <div class="pipeline-content">
+            <div class="stage-name">LLM Generation</div>
+            <div class="stage-desc">Groq <code>compound-beta-mini</code> generates the final answer. System prompt enforces strict grounding: no external knowledge, every claim must be cited, refuse to answer if context is insufficient. <code>temperature=0.1</code> for near-deterministic factual extraction.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 4: TECH STACK -->
+    <div class="section">
+      <div class="section-label">Implementation</div>
+      <h2>Tech Stack</h2>
+      <div class="tech-table-wrap">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Library or Service</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>PDF Parsing</td><td>PyMuPDF (fitz)</td></tr>
+            <tr><td>Chunking</td><td>LangChain RecursiveCharacterTextSplitter</td></tr>
+            <tr><td>Embeddings</td><td>sentence-transformers all-MiniLM-L6-v2</td></tr>
+            <tr><td>Vector Store</td><td>ChromaDB (persistent, embedded mode)</td></tr>
+            <tr><td>Sparse Retrieval</td><td>rank-bm25 (BM25Okapi)</td></tr>
+            <tr><td>Hybrid Fusion</td><td>Reciprocal Rank Fusion (custom implementation)</td></tr>
+            <tr><td>Query Engineering</td><td>HyDE, Query Rewriting, Multi-Query</td></tr>
+            <tr><td>Reranking</td><td>cross-encoder/ms-marco-MiniLM-L-6-v2</td></tr>
+            <tr><td>LLM Generation</td><td>Groq API (compound-beta-mini)</td></tr>
+            <tr><td>API Framework</td><td>FastAPI plus Uvicorn</td></tr>
+            <tr><td>Containerisation</td><td>Docker plus Docker Compose</td></tr>
+            <tr><td>Deployment</td><td>Railway (Dockerised)</td></tr>
+            <tr><td>Evaluation</td><td>RAGAS 0.2.14 (local, no OpenAI calls)</td></tr>
+            <tr><td>Tracing</td><td>LangSmith with traceable decorators</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SECTION 5: CHALLENGES -->
+    <div class="section">
+      <div class="section-label">Engineering</div>
+      <h2>Challenges and How They Were Solved</h2>
+      <p>This project was built by diagnosing real retrieval failures, not by following a framework tutorial. Each challenge below was encountered during development, diagnosed through controlled experiments, and fixed with a targeted solution.</p>
+      <div class="challenges" style="margin-top:28px">
+
+        <div class="challenge-card">
+          <div class="challenge-header">
+            <div class="challenge-num">01</div>
+            <div class="challenge-title">Dense retrieval returned confident, wrong answers</div>
+          </div>
+          <div class="challenge-block">
+            <div class="challenge-block-label label-wrong">What went wrong</div>
+            <p>A query for North America revenue returned a ratio analysis table (where "revenue" appeared six times as a denominator) and a Swiss subsidiary row (where "NA" matched "North America" semantically). The correct answer page containing the actual geographic revenue figure was not in the top 3 results at all.</p>
+          </div>
+          <div class="challenge-block">
+            <div class="challenge-block-label label-fixed">How it was fixed</div>
+            <p>BM25 sparse retrieval. BM25 tokenizes "NA" as a single token with no geographic match and scores the ratio table near zero because it contains no geographic tokens. BM25 found the correct page at rank 3. <strong>MRR improved from 0.00 to 0.33.</strong></p>
+          </div>
+        </div>
+
+        <div class="challenge-card">
+          <div class="challenge-header">
+            <div class="challenge-num">02</div>
+            <div class="challenge-title">Hybrid search made retrieval worse before it made it better</div>
+          </div>
+          <div class="challenge-block">
+            <div class="challenge-block-label label-wrong">What went wrong</div>
+            <p>BM25 alone had MRR 0.33. Combining dense and BM25 with RRF dropped MRR to 0.00. The correct page was absent from the dense top-10 entirely, so RRF amplified the dense false positives rather than correcting them. RRF rewards cross-system agreement but cannot penalise single-system confident errors.</p>
+          </div>
+          <div class="challenge-block">
+            <div class="challenge-block-label label-fixed">How it was fixed</div>
+            <p>HyDE query expansion. Generating a hypothetical answer passage using document vocabulary (INR crore, North America, YoY, geographic mix) moved the correct page to dense rank 1. <strong>HyDE plus BM25 hybrid achieved MRR 1.00.</strong></p>
+          </div>
+        </div>
+
+        <div class="challenge-card">
+          <div class="challenge-header">
+            <div class="challenge-num">03</div>
+            <div class="challenge-title">Cross-encoder reranking hurt performance despite being theoretically correct</div>
+          </div>
+          <div class="challenge-block">
+            <div class="challenge-block-label label-wrong">What went wrong</div>
+            <p>After HyDE and hybrid retrieval got the correct page to rank 1, adding the cross-encoder dropped it to rank 2. The MS MARCO-trained cross-encoder had learned that pages dense with geographic names are relevant to geographic queries, which is true on the web but wrong in financial documents. It ranked a corporate overview page containing a country office list above the actual revenue table.</p>
+          </div>
+          <div class="challenge-block">
+            <div class="challenge-block-label label-fixed">How it was fixed</div>
+            <p>Page-level deduplication after reranking. Keeping only the highest-scoring chunk per unique source page removed a duplicate chunk that was diluting the correct page's ranking and allowed its score to compete directly against the false positive. Zero additional compute cost. <strong>MRR restored to 1.00.</strong></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 6: EVALUATION RESULTS -->
+    <div class="section">
+      <div class="section-label">Results</div>
+      <h2>Evaluation Results</h2>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-score">0.991</div>
+          <div class="metric-name">Context Precision</div>
+          <div class="metric-desc">Retrieved chunks are almost entirely relevant</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-score">1.000</div>
+          <div class="metric-name">Context Recall</div>
+          <div class="metric-desc">Every reference sentence is covered by retrieved context</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-score" style="color:var(--amber)">0.385</div>
+          <div class="metric-name">Faithfulness</div>
+          <div class="metric-desc">Measurement artefact, not hallucination (see note below)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-score" style="color:var(--amber)">0.462</div>
+          <div class="metric-name">Answer Relevancy</div>
+          <div class="metric-desc">Correlates with faithfulness, same root cause</div>
+        </div>
+      </div>
+      <div class="eval-note">
+        <p><strong>Note on Faithfulness:</strong> The 0.385 score is a measurement artefact. The cross-encoder faithfulness metric penalises terse one-liner answers produced for numerical fact queries, because short answer sentences score in a different logit range than full sentences when paired with long context paragraphs. Conceptual questions where the model produced multi-sentence answers all scored 1.000.</p>
+      </div>
+      <p class="eval-context">Evaluated on 13 ground-truth QA pairs across the Infosys FY2025-26 annual report and AGM transcript corpus.</p>
+    </div>
+
+    <!-- SECTION 7: PROJECT STRUCTURE -->
+    <div class="section">
+      <div class="section-label">Codebase</div>
+      <h2>Project Structure</h2>
+      <div class="code-block">
+        <pre>deep-research-rag/
+├── app.py                  <span class="d-comment"># Portfolio demo UI (FastAPI + dark-mode HTML, port 7860)</span>
+├── src/
+│   ├── ingestion/          <span class="d-comment"># PDF parsing, chunking, embedding, ChromaDB ingest</span>
+│   ├── retrieval/          <span class="d-comment"># Dense retriever, BM25 retriever, RRF fusion</span>
+│   ├── reranking/          <span class="d-comment"># Cross-encoder reranker</span>
+│   ├── generation/         <span class="d-comment"># HyDE, LLM generation, citation extraction</span>
+│   ├── pipeline/           <span class="d-comment"># Full 7-stage pipeline orchestration</span>
+│   ├── evaluation/         <span class="d-comment"># RAGAS evaluation</span>
+│   └── api/                <span class="d-comment"># FastAPI application</span>
+├── chroma_db/              <span class="d-comment"># Pre-populated vector store (committed to repo)</span>
+├── data/
+│   └── ground_truth.json
+├── Dockerfile
+├── docker-compose.yml
+└── requirements.txt</pre>
+      </div>
+    </div>
+
+    <!-- SECTION 8: BACK TO PROJECTS -->
+    <div class="back-section">
+      <p>Explore more projects from BuildWithAV</p>
+      <a href="../projects.html" class="btn-secondary">&#8592; Back to Projects</a>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Abhishek Vinod &nbsp;·&nbsp; AI Engineer · Full-Stack Developer &nbsp;·&nbsp; Hyderabad, India &nbsp;·&nbsp; © 2026</p>
+    <p style="margin-top:8px"><a href="../index.html">Back to Portfolio</a> &nbsp;·&nbsp; <a href="../story.html">My Story</a></p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks  = document.querySelector('.nav-links');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          navLinks.classList.remove('open');
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>

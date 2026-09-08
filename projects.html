@@ -455,6 +455,40 @@
 
     <div class="projects-grid">
 
+      <!-- Card 0: Deep Research RAG -->
+      <div class="project-card fade-up delay-2">
+        <div class="card-top">
+          <div class="card-icon">🔬</div>
+          <span class="status-badge status-live">Shipped</span>
+        </div>
+        <div class="card-title">Deep Research RAG</div>
+        <div class="card-desc">
+          A production-grade 7-stage RAG pipeline for research document intelligence — grounded answers with inline source and page citations across dense business document corpora.
+        </div>
+        <div class="card-tags">
+          <span class="tag-pill">PyMuPDF</span>
+          <span class="tag-pill">LangChain</span>
+          <span class="tag-pill">ChromaDB</span>
+          <span class="tag-pill">BM25</span>
+          <span class="tag-pill">RRF</span>
+          <span class="tag-pill">HyDE</span>
+          <span class="tag-pill">Cross-Encoder Reranking</span>
+          <span class="tag-pill">Groq</span>
+          <span class="tag-pill">FastAPI</span>
+          <span class="tag-pill">Docker</span>
+          <span class="tag-pill">Railway</span>
+          <span class="tag-pill">RAGAS</span>
+        </div>
+        <div style="font-size:0.78rem;color:var(--green);margin-top:8px;font-weight:500">
+          Context Precision 0.991 &nbsp;·&nbsp; Context Recall 1.000 on 13 ground-truth QA pairs
+        </div>
+        <div class="card-actions">
+          <a href="https://deep-research-rag-production.up.railway.app" target="_blank" rel="noopener" class="btn-try-live">↗ Live Demo</a>
+          <a href="projects/deep-research-rag.html" class="btn-try-live">Case Study</a>
+          <a href="https://github.com/CoderAbhishek/deep-research-rag" target="_blank" rel="noopener" class="btn-try-live">GitHub</a>
+        </div>
+      </div>
+
       <!-- Card 1: Pre-Call Intel Briefing Tool -->
       <div class="project-card fade-up delay-2">
         <div class="card-top">
@@ -576,75 +610,29 @@
     <div class="section-title fade-up delay-1">Work in Progress</div>
     <p class="section-sub fade-up delay-2">Active builds — being designed, developed, and documented in real time.</p>
 
-    <div class="wip-grid">
+    <div class="projects-grid">
 
-      <div class="wip-card fade-up delay-2">
-        <div class="wip-icon">📄</div>
-        <div class="wip-title">BRD Generator</div>
-        <div class="wip-desc">
-          A 17-agent AI pipeline that turns a plain-English project brief into a publication-ready Business Requirements Document. Interview agent, domain classifier, research agent pulling live regulations and NFR templates, and 11 parallel section drafting agents — all orchestrated via LangGraph. Built in Python + FastAPI.
+      <div class="project-card fade-up delay-2">
+        <div class="card-top">
+          <div class="card-icon">🧪</div>
+          <span class="status-badge status-wip">Building Now</span>
         </div>
-        <div class="wip-progress">
-          <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
-          <span class="progress-label">~50%</span>
+        <div class="card-title">Research Model Adaptation Lab</div>
+        <div class="card-desc">
+          A hands-on fine-tuning lab applying SFT, LoRA, and QLoRA to a domain-specific research task: measuring accuracy, inference latency, GPU memory, and model size at each adaptation stage.
         </div>
         <div class="card-tags">
-          <span class="tag-pill">Python</span>
-          <span class="tag-pill">LangGraph</span>
-          <span class="tag-pill">Claude API</span>
-          <span class="tag-pill">FastAPI</span>
-          <span class="tag-pill">Agentic AI</span>
+          <span class="tag-pill">Hugging Face Transformers</span>
+          <span class="tag-pill">PEFT</span>
+          <span class="tag-pill">TRL</span>
+          <span class="tag-pill">bitsandbytes</span>
+          <span class="tag-pill">PyTorch</span>
+          <span class="tag-pill">LoRA</span>
+          <span class="tag-pill">QLoRA</span>
+          <span class="tag-pill">Datasets</span>
         </div>
-      </div>
-
-      <div class="wip-card fade-up delay-3">
-        <div class="wip-icon">💪</div>
-        <div class="wip-title">AI Gym Tracker</div>
-        <div class="wip-desc">
-          A smart fitness tracker that logs workouts, tracks progressive overload, and surfaces AI-generated insights on recovery and performance trends. Tailored to real training patterns, not generic plans.
-        </div>
-        <div class="wip-progress">
-          <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
-          <span class="progress-label">~40%</span>
-        </div>
-        <div class="card-tags">
-          <span class="tag-pill">AI Integration</span>
-          <span class="tag-pill">Data Tracking</span>
-          <span class="tag-pill">UX Design</span>
-        </div>
-      </div>
-
-      <div class="wip-card fade-up delay-3">
-        <div class="wip-icon">📊</div>
-        <div class="wip-title">AI Market Research Tool</div>
-        <div class="wip-desc">
-          An agentic pipeline that automates market sizing, competitor mapping, and TAM/SAM/SOM analysis — the kind of work that took days in consulting, compressed into a structured AI workflow.
-        </div>
-        <div class="wip-progress">
-          <div class="progress-bar"><div class="progress-fill" style="width:25%"></div></div>
-          <span class="progress-label">~25%</span>
-        </div>
-        <div class="card-tags">
-          <span class="tag-pill">Agentic AI</span>
-          <span class="tag-pill">Research Automation</span>
-          <span class="tag-pill">Consulting Use Case</span>
-        </div>
-      </div>
-
-      <div class="wip-card fade-up delay-4">
-        <div class="wip-icon">📈</div>
-        <div class="wip-title">Analytics Dashboard Template</div>
-        <div class="wip-desc">
-          A reusable analytics dashboard built for quick deployment across business use cases — KPI tracking, cohort analysis, and executive-ready visualisations. Designed to replace hours of BI setup.
-        </div>
-        <div class="wip-progress">
-          <div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div>
-          <span class="progress-label">~20%</span>
-        </div>
-        <div class="card-tags">
-          <span class="tag-pill">Power BI / Python</span>
-          <span class="tag-pill">Data Viz</span>
-          <span class="tag-pill">Business Analytics</span>
+        <div style="font-size:0.85rem;color:var(--muted);margin-top:12px;line-height:1.65">
+          Fine-tuning a base model on a research-oriented task through three adaptation stages: full supervised fine-tuning as a baseline, LoRA for parameter-efficient adaptation, and QLoRA for 4-bit quantized training. Each stage is benchmarked against the same evaluation set so the tradeoffs between resource cost and task performance are concrete and measurable, not theoretical.
         </div>
       </div>
 

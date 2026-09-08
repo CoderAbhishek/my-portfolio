@@ -123,6 +123,34 @@
         <span class="tool-hl">In pipeline</span>
       </div>
 
+      <div class="tool-card reveal rd2">
+        <div class="tool-card-top"><span class="tool-emoji">📄</span><span class="tool-cat">PDF Processing</span></div>
+        <div class="tool-name">PyMuPDF</div>
+        <div class="tool-desc">Used for coordinate-based PDF text extraction in the Deep Research RAG pipeline. Handles dense financial documents including annual reports and AGM transcripts reliably across 444 pages.</div>
+        <span class="tool-hl">In production</span>
+      </div>
+
+      <div class="tool-card reveal rd3">
+        <div class="tool-card-top"><span class="tool-emoji">⚖️</span><span class="tool-cat">Evaluation</span></div>
+        <div class="tool-name">RAGAS</div>
+        <div class="tool-desc">Local evaluation framework for RAG pipelines. Used to evaluate Deep Research RAG on 13 ground-truth QA pairs across four metrics: Context Precision 0.991, Context Recall 1.000, Faithfulness, and Answer Relevancy. Runs entirely locally with no OpenAI API calls.</div>
+        <span class="tool-hl">Evaluated</span>
+      </div>
+
+      <div class="tool-card reveal">
+        <div class="tool-card-top"><span class="tool-emoji">🐳</span><span class="tool-cat">Containerisation</span></div>
+        <div class="tool-name">Docker</div>
+        <div class="tool-desc">Used to containerise the Deep Research RAG system with ChromaDB baked into the image and Hugging Face model weights cached in a named Docker volume so they download once and persist across container restarts.</div>
+        <span class="tool-hl">Shipped</span>
+      </div>
+
+      <div class="tool-card reveal rd1">
+        <div class="tool-card-top"><span class="tool-emoji">🚂</span><span class="tool-cat">Deployment</span></div>
+        <div class="tool-name">Railway</div>
+        <div class="tool-desc">Cloud deployment platform used to host the Dockerised Deep Research RAG FastAPI application. Chosen after Hugging Face Spaces moved to paid Docker tier and Render hit out-of-memory errors on the free tier.</div>
+        <span class="tool-hl">Live</span>
+      </div>
+
     </div>
 
     <div class="reveal rd2" style="margin-top:3rem">
@@ -139,6 +167,9 @@
         <span class="tag">Supervised and Unsupervised Learning</span>
         <span class="tag">Vector Databases</span>
         <span class="tag">Agent Architectures</span>
+        <span class="tag">Retrieval Engineering</span>
+        <span class="tag">Hybrid Search</span>
+        <span class="tag">BM25 Sparse Retrieval</span>
       </div>
     </div>
   </div>
