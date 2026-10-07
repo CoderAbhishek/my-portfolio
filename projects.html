@@ -3,10 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projects — Abhishek Vinod</title>
+  <title>Projects | Abhishek Vinod</title>
+  <meta name="description" content="GenAI projects by Abhishek Vinod: a deployed 7-stage RAG pipeline with RAGAS evaluation, a LangChain ReAct agent, and a LangGraph workflow." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Abhishek Vinod" />
+  <meta property="og:title" content="Projects | Abhishek Vinod" />
+  <meta property="og:description" content="GenAI projects by Abhishek Vinod: a deployed 7-stage RAG pipeline with RAGAS evaluation, a LangChain ReAct agent, and a LangGraph workflow." />
+  <meta property="og:url" content="https://coderabhishek.github.io/my-portfolio/projects.html" />
+  <meta property="og:image" content="https://coderabhishek.github.io/my-portfolio/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Abhishek Vinod, AI Engineer" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Projects | Abhishek Vinod" />
+  <meta name="twitter:description" content="GenAI projects by Abhishek Vinod: a deployed 7-stage RAG pipeline with RAGAS evaluation, a LangChain ReAct agent, and a LangGraph workflow." />
+  <meta name="twitter:image" content="https://coderabhishek.github.io/my-portfolio/og-image.png" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -35,30 +53,38 @@
       min-height: 100vh;
     }
 
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar              { width: 4px; }
+    ::-webkit-scrollbar-track        { background: var(--bg); }
+    ::-webkit-scrollbar-thumb        { background: var(--accent); border-radius: 2px; }
+
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%;
-      height: 64px;
-      background: rgba(10,10,15,0.85);
-      backdrop-filter: blur(14px);
+      padding: 1.1rem 3rem;
+      background: rgba(7,7,13,0.8);
+      backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
     }
     .nav-logo {
       font-family: 'Syne', sans-serif;
-      font-size: 1.2rem; font-weight: 800;
-      color: var(--text);
+      font-size: 1.05rem; font-weight: 800;
+      color: #f1f5f9;
       text-decoration: none;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.01em;
     }
     .nav-logo span { color: var(--accent); }
     .nav-links {
-      display: flex; align-items: center; gap: 2rem;
+      display: flex; gap: 2rem;
       list-style: none;
     }
     .nav-links a {
-      color: var(--muted);
+      color: #94a3b8;
       text-decoration: none;
       font-size: 0.82rem;
       font-weight: 500;
@@ -382,13 +408,13 @@
       border: none;
       cursor: pointer;
       padding: 4px;
-      z-index: 101;
+      z-index: 901;
     }
     .nav-hamburger span {
       display: block;
       width: 22px;
       height: 2px;
-      background: var(--text);
+      background: #f1f5f9;
       border-radius: 2px;
       transition: transform 0.3s, opacity 0.3s;
     }
@@ -403,18 +429,22 @@
         position: absolute;
         top: 100%;
         left: 0; right: 0;
-        background: rgba(10,10,15,0.97);
-        backdrop-filter: blur(14px);
+        background: rgba(7,7,13,0.97);
+        backdrop-filter: blur(24px);
         border-bottom: 1px solid var(--border);
         flex-direction: column;
-        align-items: stretch;
         padding: 0.5rem 0;
         gap: 0;
       }
       .nav-links.open { display: flex; }
       .nav-links li { border-bottom: 1px solid var(--border); }
       .nav-links li:last-child { border-bottom: none; }
-      .nav-links a { display: block; padding: 0.875rem 5%; font-size: 0.88rem; }
+      .nav-links a { display: block; padding: 0.875rem 3rem; font-size: 0.88rem; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links a { padding: 0.875rem 1.5rem; }
     }
 
     @media (max-width: 700px) {
@@ -718,6 +748,15 @@
   </footer>
 
   <script>
+    const navBar = document.querySelector('nav');
+    if (navBar) {
+      window.addEventListener('scroll', () => {
+        navBar.style.boxShadow = window.scrollY > 20
+          ? '0 2px 30px rgba(0, 0, 0, 0.45)'
+          : 'none';
+      }, { passive: true });
+    }
+
     const hamburger = document.getElementById('nav-hamburger');
     const navLinks  = document.querySelector('.nav-links');
     if (hamburger && navLinks) {
