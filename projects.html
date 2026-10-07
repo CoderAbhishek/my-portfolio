@@ -514,6 +514,36 @@
         </div>
       </div>
 
+      <!-- Card 0c: AI Stock Market Assistant -->
+      <div class="project-card fade-up delay-3">
+        <div class="card-top">
+          <div class="card-icon">📈</div>
+          <span class="status-badge status-live">Shipped</span>
+        </div>
+        <div class="card-title">AI Stock Market Assistant</div>
+        <div class="card-desc">
+          A multi-node LangGraph workflow that takes a stock ticker and an optional question, combines yfinance price indicators (SMA20, SMA50, volatility, trend) with a RAG pass over roughly 14 days of NewsAPI headlines, and returns a simulated BUY, SELL or HOLD with a justification. A conditional edge routes invalid tickers and API errors to a fallback node. Informational only: no trades are executed and it is not financial advice.
+        </div>
+        <div class="card-tags">
+          <span class="tag-pill">LangGraph</span>
+          <span class="tag-pill">LangChain</span>
+          <span class="tag-pill">RAG</span>
+          <span class="tag-pill">FastEmbed</span>
+          <span class="tag-pill">Groq</span>
+          <span class="tag-pill">Pydantic</span>
+          <span class="tag-pill">yfinance</span>
+          <span class="tag-pill">NewsAPI</span>
+          <span class="tag-pill">Streamlit</span>
+        </div>
+        <div style="font-size:0.78rem;color:var(--green);margin-top:8px;font-weight:500">
+          In-memory vector store, news fetched per run. Built for learning, not for production.
+        </div>
+        <div class="card-actions">
+          <a href="https://ai-stock-market-assistant.streamlit.app/" target="_blank" rel="noopener" class="btn-try-live">↗ Live Demo</a>
+          <a href="https://github.com/CoderAbhishek/ai-stock-market-assistant" target="_blank" rel="noopener" class="btn-try-live">GitHub</a>
+        </div>
+      </div>
+
       <!-- Card 1: Pre-Call Intel Briefing Tool -->
       <div class="project-card fade-up delay-2">
         <div class="card-top">
