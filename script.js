@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'AI Engineer',
       'AI Tools Builder',
       'Full-Stack Developer',
-      'Strategy Consultant',
-      'MBA Analytics',
+      'AI Consultant',
+      'RAG & Agent Developer',
     ];
 
     let phraseIndex = 0;
