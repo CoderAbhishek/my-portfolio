@@ -123,6 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.classList.remove('open');
       });
     });
+
+    // Reset menu state whenever the viewport crosses the hamburger breakpoint (keep in sync with styles.css)
+    window.matchMedia('(max-width: 1100px)').addEventListener('change', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
   }
 
 });
