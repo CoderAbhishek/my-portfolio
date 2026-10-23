@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projects | Abhishek Vinod</title>
-  <meta name="description" content="GenAI projects by Abhishek Vinod: a deployed 7-stage RAG pipeline with RAGAS evaluation, a LangChain ReAct agent, and a LangGraph workflow." />
+  <meta name="description" content="GenAI projects by Abhishek Vinod: a deployed 7-stage RAG pipeline with RAGAS evaluation, a LangChain ReAct agent, and two LangGraph apps." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Abhishek Vinod" />
   <meta property="og:title" content="Projects | Abhishek Vinod" />
-  <meta property="og:description" content="GenAI projects by Abhishek Vinod: a deployed 7-stage RAG pipeline with RAGAS evaluation, a LangChain ReAct agent, and a LangGraph workflow." />
+  <meta property="og:description" content="GenAI projects by Abhishek Vinod: a deployed 7-stage RAG pipeline with RAGAS evaluation, a LangChain ReAct agent, and two LangGraph apps." />
   <meta property="og:url" content="https://coderabhishek.github.io/my-portfolio/projects.html" />
   <meta property="og:image" content="https://coderabhishek.github.io/my-portfolio/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -16,7 +16,7 @@
   <meta property="og:image:alt" content="Abhishek Vinod, AI Engineer" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Projects | Abhishek Vinod" />
-  <meta name="twitter:description" content="GenAI projects by Abhishek Vinod: a deployed 7-stage RAG pipeline with RAGAS evaluation, a LangChain ReAct agent, and a LangGraph workflow." />
+  <meta name="twitter:description" content="GenAI projects by Abhishek Vinod: a deployed 7-stage RAG pipeline with RAGAS evaluation, a LangChain ReAct agent, and two LangGraph apps." />
   <meta name="twitter:image" content="https://coderabhishek.github.io/my-portfolio/og-image.png" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -478,7 +478,7 @@
     <div class="tag fade-up">Build Log</div>
     <h1 class="fade-up delay-1">Things I've <span>Built</span><br/>& Am Building.</h1>
     <p class="fade-up delay-2">
-      Real projects — documented, shipped, and in progress. Software development taught me to ship. Strategy consulting taught me to think at the business level. AI lets me do both — faster. Here's the output.
+      Real projects: documented, shipped, and in progress. Software development taught me to ship. Strategy consulting taught me to think at the business level. AI lets me do both, faster. Here's the output.
     </p>
   </div>
 
@@ -498,7 +498,7 @@
         </div>
         <div class="card-title">Deep Research RAG</div>
         <div class="card-desc">
-          A production-grade 7-stage RAG pipeline for research document intelligence — grounded answers with inline source and page citations across dense business document corpora.
+          A production-oriented 7-stage RAG pipeline for research document intelligence: grounded answers with inline source and page citations across dense business document corpora.
         </div>
         <div class="card-tags">
           <span class="tag-pill">PyMuPDF</span>
@@ -579,6 +579,35 @@
         </div>
       </div>
 
+      <!-- Card 0d: General-Purpose AI Chatbot -->
+      <div class="project-card fade-up delay-4">
+        <div class="card-top">
+          <div class="card-icon">💬</div>
+          <span class="status-badge status-live">Shipped</span>
+        </div>
+        <div class="card-title">General-Purpose AI Chatbot</div>
+        <div class="card-desc">
+          A tool-calling assistant built on a LangGraph agent loop. The model decides when to use a calculator, an LLM summariser or live Tavily web search, remembers each conversation by thread with a LangGraph checkpointer, and streams replies token by token in Streamlit. Built minimal on purpose.
+        </div>
+        <div class="card-tags">
+          <span class="tag-pill">Python</span>
+          <span class="tag-pill">LangGraph</span>
+          <span class="tag-pill">LangChain</span>
+          <span class="tag-pill">Groq</span>
+          <span class="tag-pill">Tavily</span>
+          <span class="tag-pill">Streamlit</span>
+          <span class="tag-pill">pytest</span>
+          <span class="tag-pill">uv</span>
+        </div>
+        <div style="font-size:0.78rem;color:var(--green);margin-top:8px;font-weight:500">
+          81 automated tests (74 offline, 7 live). In-process memory, no evaluation set, no rate limiting. Built for learning, not for production.
+        </div>
+        <div class="card-actions">
+          <a href="https://general-purpose-ai-chatbot.streamlit.app/" target="_blank" rel="noopener" class="btn-try-live">↗ Live Demo</a>
+          <a href="https://github.com/CoderAbhishek/general-purpose-ai-chatbot" target="_blank" rel="noopener" class="btn-try-live">GitHub</a>
+        </div>
+      </div>
+
       <!-- Card 1: Pre-Call Intel Briefing Tool -->
       <div class="project-card fade-up delay-2">
         <div class="card-top">
@@ -587,7 +616,7 @@
         </div>
         <div class="card-title">Pre-Call Intel Briefing Tool</div>
         <div class="card-desc">
-          Eliminates the 30–45 min of manual research before an HR screening call. Upload your resume, paste the job description, and enter the company name — a Claude API call (routed through a Cloudflare Worker proxy, so no API key needed) pulls the last 6 months of company news, funding rounds, and product launches, maps your skills to what the company needs, generates personalised talking points, and produces 3 smart questions to ask HR — structured company and role intelligence in under 60 seconds. Listed on Gumroad at $9.
+          Eliminates the 30–45 min of manual research before an HR screening call. Upload your resume, paste the job description, and enter the company name. A Claude API call (routed through a Cloudflare Worker proxy, so no API key needed) pulls the last 6 months of company news, funding rounds, and product launches, maps your skills to what the company needs, generates personalised talking points, and produces 3 smart questions to ask HR. The result is structured company and role intelligence in under 60 seconds. Listed on Gumroad at $9.
         </div>
         <div class="card-tags">
           <span class="tag-pill">Claude API</span>
@@ -609,7 +638,7 @@
         </div>
         <div class="card-title">Daily Intelligence Digest</div>
         <div class="card-desc">
-          An automated morning briefing built on n8n — RSS feeds across AI/ML, tech, job market, and global news are pulled on a schedule, synthesised into a readable digest by an LLM, and delivered straight to your inbox. Zero manual effort after setup.
+          An automated morning briefing built on n8n: RSS feeds across AI/ML, tech, job market, and global news are pulled on a schedule, synthesised into a readable digest by an LLM, and delivered straight to your inbox. Zero manual effort after setup.
         </div>
         <div class="card-tags">
           <span class="tag-pill">n8n</span>
@@ -631,7 +660,7 @@
         </div>
         <div class="card-title">Portfolio Website</div>
         <div class="card-desc">
-          Built from scratch — no frameworks, no templates, no shortcuts. A fully responsive dark-theme portfolio showcasing strategy, analytics, and AI work. Custom CSS animations, smooth scroll navigation, and a design where every section and pixel was deliberate. Deployed on GitHub Pages.
+          Built from scratch: no frameworks, no templates, no shortcuts. A fully responsive dark-theme portfolio showcasing strategy, analytics, and AI work. Custom CSS animations, smooth scroll navigation, and a design where every section and pixel was deliberate. Deployed on GitHub Pages.
         </div>
         <div class="card-tags">
           <span class="tag-pill">HTML / CSS / JS</span>
@@ -698,7 +727,7 @@
   <div class="section">
     <div class="section-label fade-up">In the Lab</div>
     <div class="section-title fade-up delay-1">Work in Progress</div>
-    <p class="section-sub fade-up delay-2">Active builds — being designed, developed, and documented in real time.</p>
+    <p class="section-sub fade-up delay-2">Active builds: being designed, developed, and documented in real time.</p>
 
     <div class="projects-grid">
 
@@ -733,7 +762,7 @@
   <div class="github-cta fade-up">
     <div>
       <h3>All work is documented on GitHub.</h3>
-      <p>Code, architecture notes, and project READMEs — everything is version-controlled and public. See the full build history.</p>
+      <p>Code, architecture notes, and project READMEs: everything is version-controlled and public. See the full build history.</p>
     </div>
     <a href="https://github.com/coderabhishek" target="_blank" class="btn-github">
       <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
