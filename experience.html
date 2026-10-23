@@ -63,8 +63,8 @@
       <div class="exp-item reveal">
         <div class="exp-dot"></div>
         <div class="exp-header">
-          <span class="exp-company">BuildWithAV — AI Automation Practice</span>
-          <span class="exp-role">Founder — Independent AI Development</span>
+          <span class="exp-company">BuildWithAV, AI Automation Practice</span>
+          <span class="exp-role">Founder, Independent AI Development</span>
           <span class="exp-period">Jan 2026 – Present</span>
         </div>
         <div class="exp-location">📍 Hyderabad, Telangana (Remote)</div>
@@ -75,6 +75,10 @@
           <li>Evaluated the RAG pipeline with 13 ground-truth QA pairs using RAGAS (Context Precision 0.991, Context Recall 1.000) and deployed the system as a Dockerised FastAPI application on Railway with persistent ChromaDB, cached Hugging Face models, and separate demo and API interfaces.</li>
           <li>Built <strong>Learning Sprint Planner Agent</strong>: a LangChain ReAct agent (create_agent) using custom tools for course lookup and completion-time calculation, generating structured learning plans from topic, skill level, completed hours, and daily study time.</li>
           <li>Separated deterministic logic from LLM reasoning: Pydantic validation and calculations run in Python; the LLM handles tool selection and plan generation. Also built an LCEL Explain mode (ChatPromptTemplate, StrOutputParser) with Streamlit.</li>
+          <li>Built <strong>AI Stock Market Assistant</strong>: a multi-node LangGraph workflow combining yfinance price indicators (SMA20, SMA50, volatility, trend) with a RAG pass over recent NewsAPI headlines (FastEmbed embeddings, in-memory vector store) and Groq with Pydantic structured output, returning a simulated BUY, SELL or HOLD with a justification. Deployed on Streamlit Community Cloud.</li>
+          <li>Routed invalid tickers and API errors to a fallback node through a conditional edge. Informational only: it executes no trades and is not financial advice.</li>
+          <li>Built and deployed <strong>General-Purpose AI Chatbot</strong>: a LangGraph tool-calling agent (Groq, Tavily web search, calculator and LLM summariser tools) with typed state, conditional routing, a tool loop with a recursion-limit safeguard, and checkpointed per-thread session memory, streamed token by token in Streamlit.</li>
+          <li>Validated it with 81 automated tests across unit, mocked workflow, Streamlit UI and live API layers, using execution-path assertions, a custom streaming fake chat model and fault injection against deliberately broken code. Debugged silent misconfiguration bugs (ignored constructor arguments, a wrong metadata key, a mis-wired loop edge) and locked search cost settings at creation.</li>
           <li>Built lightweight AI automation workflows including an n8n-based daily intelligence digest and an LLM-powered pre-call research briefing. Explored MCP-based tool augmentation and vector database architectures using ChromaDB and Pinecone.</li>
         </ul>
       </div>
@@ -84,7 +88,7 @@
         <div class="exp-dot"></div>
         <div class="exp-header">
           <span class="exp-company">1Lattice</span>
-          <span class="exp-role">Senior Associate — Business Analysis and Strategy Consulting</span>
+          <span class="exp-role">Senior Associate, Business Analysis and Strategy Consulting</span>
           <span class="exp-period">May 2025 – Dec 2025</span>
         </div>
         <div class="exp-location">📍 Bengaluru, Karnataka</div>
@@ -102,7 +106,7 @@
         <div class="exp-dot"></div>
         <div class="exp-header">
           <span class="exp-company">Tata Consultancy Services</span>
-          <span class="exp-role">Assistant System Engineer — Full Stack Developer, BFSI Domain</span>
+          <span class="exp-role">Assistant System Engineer (Full Stack Developer, BFSI Domain)</span>
           <span class="exp-period">Nov 2020 – Jan 2023</span>
         </div>
         <div class="exp-location">📍 Hyderabad, Telangana</div>
