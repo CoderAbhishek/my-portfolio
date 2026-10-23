@@ -58,7 +58,7 @@
         <div class="section-label reveal">AI Stack</div>
         <h2 class="section-heading reveal rd1">AI Engineering Stack</h2>
         <p class="section-sub reveal rd2" style="margin-bottom:0">
-          The tools, frameworks, and concepts I build with — not just use.
+          The tools, frameworks, and concepts I build with, not just use.
         </p>
       </div>
       <div class="reveal rd3">
@@ -95,7 +95,7 @@
       <div class="tool-card reveal rd3">
         <div class="tool-card-top"><span class="tool-emoji">🧬</span><span class="tool-cat">Frameworks</span></div>
         <div class="tool-name">LangChain & LangGraph</div>
-        <div class="tool-desc">Core framework for building LLM applications and agentic pipelines. Used in the RAG PDF Chat app and the Resume vs JD Gap Analyser — implemented manual pipelines first, then rebuilt with LangChain to understand the abstraction layer.</div>
+        <div class="tool-desc">Core frameworks for LLM applications and agents. LangChain tools, LCEL and a ReAct agent in the Learning Sprint Planner Agent. LangGraph in the AI Stock Market Assistant (typed state, a conditional edge to a fallback node) and the General-Purpose AI Chatbot (tool-calling loop, checkpointed memory, streaming).</div>
         <span class="tool-hl">Building with</span>
       </div>
 
@@ -109,14 +109,14 @@
       <div class="tool-card reveal rd1">
         <div class="tool-card-top"><span class="tool-emoji">⚡</span><span class="tool-cat">LLM Inference</span></div>
         <div class="tool-name">Groq</div>
-        <div class="tool-desc">Fast inference API for running Llama and Mistral models. Used in the RAG PDF Chat app for low-latency responses during development and testing.</div>
+        <div class="tool-desc">Fast inference API for low-latency LLM calls. Used for generation in Deep Research RAG and as the LLM in the Learning Sprint Planner Agent, AI Stock Market Assistant and General-Purpose AI Chatbot, and earlier in the RAG PDF Chat app.</div>
         <span class="tool-hl">Fast inference</span>
       </div>
 
       <div class="tool-card reveal rd2">
         <div class="tool-card-top"><span class="tool-emoji">🚀</span><span class="tool-cat">Deployment</span></div>
         <div class="tool-name">Streamlit & Gradio</div>
-        <div class="tool-desc">Rapid UI and deployment layer for Python-based AI apps. Deployed the RAG PDF Chat on Streamlit Community Cloud and the JD Gap Analyser on Hugging Face Spaces via Gradio.</div>
+        <div class="tool-desc">Rapid UI and deployment layer for Python-based AI apps. Deployed the RAG PDF Chat, the AI Stock Market Assistant and the General-Purpose AI Chatbot on Streamlit Community Cloud, and the JD Gap Analyser on Hugging Face Spaces via Gradio.</div>
         <span class="tool-hl">Shipped and live</span>
       </div>
 
@@ -176,6 +176,27 @@
         <span class="tool-hl">Built & tested</span>
       </div>
 
+      <div class="tool-card reveal rd3">
+        <div class="tool-card-top"><span class="tool-emoji">🔁</span><span class="tool-cat">Agentic AI</span></div>
+        <div class="tool-name">LangGraph Agent Loop, Memory & Streaming</div>
+        <div class="tool-desc">Built the tool-calling loop in the General-Purpose AI Chatbot with typed state, an add_messages reducer, ToolNode, conditional routing and a recursion-limit safeguard. Conversations are remembered per thread with a checkpointer (in-process only), and replies stream token by token with raw tool output kept out of the reply.</div>
+        <span class="tool-hl">Shipped</span>
+      </div>
+
+      <div class="tool-card reveal">
+        <div class="tool-card-top"><span class="tool-emoji">🌐</span><span class="tool-cat">Web Search</span></div>
+        <div class="tool-name">Tavily Search</div>
+        <div class="tool-desc">Live web search through the official langchain-tavily integration in the General-Purpose AI Chatbot. Result count and search depth are locked when the tool is created, so the model cannot raise cost, and answers cite source URLs.</div>
+        <span class="tool-hl">Shipped</span>
+      </div>
+
+      <div class="tool-card reveal rd1">
+        <div class="tool-card-top"><span class="tool-emoji">🧪</span><span class="tool-cat">Testing</span></div>
+        <div class="tool-name">pytest & Streamlit AppTest</div>
+        <div class="tool-desc">Three-layer testing for LLM apps in the General-Purpose AI Chatbot: 47 unit tests, 21 mocked workflow tests, 6 Streamlit UI tests and 7 live smoke tests. Workflow tests assert the path the graph took, use a custom streaming fake chat model, and were checked with fault injection against deliberately broken code.</div>
+        <span class="tool-hl">81 tests</span>
+      </div>
+
     </div>
 
     <div class="reveal rd2" style="margin-top:3rem">
@@ -198,6 +219,8 @@
         <span class="tag">Tool Calling</span>
         <span class="tag">ReAct Pattern</span>
         <span class="tag">Agent Grounding</span>
+        <span class="tag">Agent Memory and Checkpointing</span>
+        <span class="tag">Testing LLM Applications</span>
       </div>
     </div>
   </div>
